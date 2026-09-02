@@ -1,0 +1,2012 @@
+* {
+    box-sizing: border-box
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden
+}
+
+body {
+    margin: 0;
+    background: #fbf4ed;
+    color: #5b393f;
+    font-family: "DM Sans", sans-serif;
+    overflow-x: hidden
+}
+
+body.locked {
+    height: 100vh;
+    overflow: hidden
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+button,
+input,
+select {
+    font: inherit
+}
+
+button {
+    cursor: pointer
+}
+
+:root {
+    --wine: #813a4e;
+    --rose: #a34e61;
+    --gold: #b78a45;
+    --cream: #fbf4ed;
+    --line: #d9b99a
+}
+
+.opening {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle at 50% 30%, #fffdf9, #f2e2d6 75%);
+    transition: opacity .85s ease, visibility .85s
+}
+
+.opening.opened {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none
+}
+
+.opening-floral {
+    position: absolute;
+    top: 7%;
+    width: 100%;
+    text-align: center;
+    color: var(--gold);
+    font-size: 28px;
+    letter-spacing: 9px;
+    opacity: .65
+}
+
+.envelope-scene {
+    width: min(410px, 88vw);
+    text-align: center
+}
+
+.envelope {
+    height: min(455px, 112vw);
+    position: relative;
+    perspective: 1300px
+}
+
+.env-back {
+    position: absolute;
+    inset: 7% 2% 5%;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #fffdfa, #e7d1c7);
+    box-shadow: 0 30px 60px #54251e20
+}
+
+.env-pocket {
+    position: absolute;
+    inset: 30% 2% 5%;
+    z-index: 5;
+    background: linear-gradient(145deg, #f6e9df, #e4ccc0);
+    clip-path: polygon(0 0, 50% 45%, 100% 0, 100% 100%, 0 100%);
+    border-radius: 0 0 18px 18px
+}
+
+.env-flap {
+    position: absolute;
+    top: 7%;
+    left: 2%;
+    right: 2%;
+    height: 55%;
+    z-index: 8;
+    transform-origin: top center;
+    background: linear-gradient(145deg, #fffdfa, #ead5c9);
+    clip-path: polygon(0 0, 100% 0, 50% 76%);
+    transition: transform .85s cubic-bezier(.2, .85, .2, 1)
+}
+
+.invitation-card {
+    position: absolute;
+    left: 9%;
+    right: 9%;
+    top: 12%;
+    height: 79%;
+    z-index: 6;
+    border: 1px solid #c8a56c99;
+    border-radius: 13px;
+    background: linear-gradient(#fffefa, #fcf2eb);
+    color: #653f44;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 22px;
+    box-shadow: 0 18px 45px #54251e18;
+    transition: box-shadow .3s
+}
+
+.invitation-card:hover {
+    box-shadow: 0 25px 55px #54251e28
+}
+
+.mini-crest {
+    width: 61px;
+    height: 61px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font: 500 25px "Cormorant Garamond"
+}
+
+.mini-crest i {
+    font-style: normal;
+    color: var(--gold);
+    font-size: 16px
+}
+
+.invitation-card small {
+    font-size: 9px;
+    letter-spacing: 3px
+}
+
+.invitation-card strong {
+    font: 500 33px "Cormorant Garamond"
+}
+
+.invitation-card strong i {
+    font-style: normal;
+    color: var(--gold)
+}
+
+.invitation-card em {
+    font-style: normal;
+    letter-spacing: 3px;
+    font-size: 12px
+}
+
+.tap {
+    font-size: 10px;
+    color: #9b7d6e;
+    margin-top: 8px
+}
+
+.seal {
+    position: absolute;
+    z-index: 12;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: var(--wine);
+    border: 4px double #e9c98b;
+    transition: .35s
+}
+
+.envelope.is-open .env-flap {
+    transform: rotateX(180deg);
+    z-index: 3
+}
+
+.envelope.is-open .invitation-card {
+    animation: cardRise 1.25s cubic-bezier(.2, .82, .2, 1) both;
+    z-index: 10
+}
+
+.envelope.is-open .seal {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.5)
+}
+
+@keyframes cardRise {
+    0% {
+        transform: translateY(0)
+    }
+
+    35% {
+        transform: translateY(-30%) scale(1.02)
+    }
+
+    65% {
+        transform: translateY(-10%) scale(1.01)
+    }
+
+    100% {
+        transform: translateY(0) scale(1)
+    }
+}
+
+.open-btn {
+    margin-top: -4px;
+    padding: 13px 25px;
+    border: 1px solid #c8a56c;
+    border-radius: 999px;
+    background: #fffdfa;
+    color: var(--wine);
+    box-shadow: 0 12px 25px #54251e15
+}
+
+.open-btn b {
+    margin-left: 9px;
+    color: var(--gold)
+}
+
+.top-control {
+    position: fixed;
+    z-index: 1200;
+    top: 17px;
+    border: 0;
+    transition: .35s
+}
+
+.music-control {
+    left: 18px;
+    border-radius: 999px;
+    padding: 9px 15px;
+    background: #813a4eea;
+    color: white
+}
+
+.music-control span {
+    font-size: 12px;
+    margin-left: 5px
+}
+
+.rsvp-control {
+    right: 18px;
+    padding: 9px 15px;
+    border-radius: 999px;
+    background: #813a4eea;
+    color: #fff;
+    font-size: 12px
+}
+
+.top-control.hide {
+    opacity: 0;
+    transform: translateY(-28px);
+    pointer-events: none
+}
+
+.hero {
+    min-height: 100svh;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at 48% 48%, #fffaf5, #f3e1d6 90%);
+    display: grid;
+    place-items: center;
+    border-bottom: 1px solid #d9b99a55
+}
+
+.hero:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #fffaf700 55%, #ead1c41c)
+}
+
+.floral {
+    position: absolute;
+    color: #b56d6c;
+    opacity: .35;
+    font-size: 150px
+}
+
+.floral-left {
+    left: -35px;
+    top: 50px
+}
+
+.floral-right {
+    right: -35px;
+    bottom: 20px
+}
+
+.hero-inner {
+    width: min(1200px, 94vw);
+    display: grid;
+    grid-template-columns: 48% 52%;
+    align-items: center;
+    min-height: 100svh;
+    padding: 75px 20px 55px;
+    position: relative;
+    z-index: 2
+}
+
+.hero-photo {
+    height: min(720px, 82vh);
+    position: relative;
+    display: flex;
+    align-items: end;
+    justify-content: center
+}
+
+.hero-photo:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 7%;
+    right: 7%;
+    height: 12px;
+    background: linear-gradient(90deg, transparent, #cda879, transparent);
+    border-radius: 50%;
+    filter: blur(2px)
+}
+
+.hero-photo img {
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 25px 28px #54251e20);
+    position: relative;
+    z-index: 2
+}
+
+.photo-ring {
+    position: absolute;
+    width: min(530px, 42vw);
+    height: min(530px, 42vw);
+    border-radius: 50%;
+    background: #ead2c71f;
+    border: 1px solid #c89b7655;
+    bottom: 11%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0
+}
+
+.hero-copy {
+    text-align: center;
+    padding: 20px
+}
+
+.crest {
+    margin: auto;
+    width: 100px;
+    height: 75px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font: 500 31px "Cormorant Garamond";
+    color: var(--wine);
+    position: relative
+}
+
+.crest:before,
+.crest:after {
+    content: "✦";
+    position: absolute;
+    color: var(--gold);
+    font-size: 12px
+}
+
+.crest:before {
+    left: -8px
+}
+
+.crest:after {
+    right: -8px
+}
+
+.crest i {
+    font-style: normal;
+    color: var(--gold);
+    font-size: 18px
+}
+
+.eyebrow,
+.kicker {
+    font-size: 11px;
+    letter-spacing: 3px
+}
+
+.eyebrow {
+    margin: 25px 0 9px
+}
+
+.hero h1 {
+    font: 500 clamp(62px, 8vw, 112px)/.76 "Allura", "Cormorant Garamond", serif;
+    color: var(--wine);
+    margin: 0
+}
+
+.hero h1 span {
+    font: 400 .42em "Cormorant Garamond";
+    color: var(--gold);
+    vertical-align: middle
+}
+
+.ornament {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    margin: 25px 0
+}
+
+.ornament span {
+    width: 62px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c49a61)
+}
+
+.ornament span:last-child {
+    background: linear-gradient(90deg, #c49a61, transparent)
+}
+
+.ornament.dark {
+    color: var(--gold)
+}
+
+.invite-copy {
+    font: 500 17px/1.6 "Cormorant Garamond";
+    letter-spacing: 2px
+}
+
+.hero-date {
+    margin: 24px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    width: max-content;
+    border-block: 1px solid #c49a6155;
+    padding: 10px 25px
+}
+
+.hero-date b {
+    font: 400 59px "Cormorant Garamond";
+    color: var(--gold)
+}
+
+.hero-date span {
+    font: 500 15px/1.25 "Cormorant Garamond";
+    letter-spacing: 2px;
+    text-align: left
+}
+
+.hero-date small {
+    font-size: 10px;
+    letter-spacing: 1px
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--wine);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--wine);
+    animation: bob 1.7s infinite
+}
+
+@keyframes bob {
+    50% {
+        transform: translate(-50%, 7px)
+    }
+}
+
+.section {
+    padding: 100px 20px;
+    position: relative
+}
+
+.section-inner {
+    width: min(1050px, 100%);
+    margin: auto;
+    text-align: center
+}
+
+.countdown {
+    background: #fffaf5
+}
+
+.countdown:before,
+.rsvp-section:before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid #c89b7644;
+    pointer-events: none
+}
+
+.paper-corner {
+    position: absolute;
+    color: #b56d6c;
+    font-size: 75px;
+    opacity: .25
+}
+
+.corner-a {
+    left: 0;
+    top: 15px
+}
+
+.corner-b {
+    right: 0;
+    bottom: 15px;
+    transform: rotate(180deg)
+}
+
+.kicker {
+    color: var(--wine);
+    margin: 0
+}
+
+.section h2 {
+    font: 500 clamp(43px, 6vw, 68px)/1 "Cormorant Garamond";
+    color: var(--wine);
+    margin: 12px 0
+}
+
+.section h2 i {
+    font-style: italic;
+    color: #9b665c
+}
+
+.timer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin: 42px auto 0;
+    width: min(800px, 100%)
+}
+
+.timer>div {
+    padding: 22px 10px;
+    border: 1px solid #d9b99a99;
+    border-radius: 12px;
+    background: #fffdf9;
+    box-shadow: 0 10px 28px #54251e0c
+}
+
+.timer b {
+    display: block;
+    font: 500 47px "Cormorant Garamond";
+    color: #9d7038
+}
+
+.timer small {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #765d55
+}
+
+.events {
+    background: #f3e5dd
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-top: 42px
+}
+
+.event-card {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    text-align: left;
+    gap: 20px;
+    padding: 28px;
+    border: 1px solid #d9b99a99;
+    border-radius: 15px;
+    background: #fffaf6;
+    box-shadow: 0 15px 35px #54251e0b
+}
+
+.event-icon {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    background: #efdcd2;
+    display: grid;
+    place-items: center;
+    font-size: 32px;
+    color: #a76b63
+}
+
+.event-card small {
+    letter-spacing: 2px;
+    color: #a06b5f
+}
+
+.event-card h3 {
+    font: 600 29px "Cormorant Garamond";
+    margin: 4px 0 8px;
+    color: var(--wine)
+}
+
+.event-card p {
+    line-height: 1.6;
+    margin: 7px 0
+}
+
+.event-card .muted {
+    color: #816e67;
+    font-size: 13px
+}
+
+.story {
+    background: #fffaf5
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 70px;
+    text-align: left
+}
+
+.story-copy p:not(.kicker) {
+    line-height: 2;
+    color: #76645e
+}
+
+.story-copy h2 {
+    margin-bottom: 10px
+}
+
+.ornament.left {
+    justify-content: flex-start
+}
+
+.signature {
+    font: 400 40px "Allura";
+    color: var(--wine);
+    margin-top: 25px
+}
+
+.signature span {
+    color: var(--gold)
+}
+
+.sketch-frame {
+    padding: 14px;
+    background: #fff;
+    border: 1px solid #d9b99a;
+    box-shadow: 0 18px 40px #54251e15;
+    transform: rotate(2deg)
+}
+
+.sketch-frame img {
+    display: block;
+    width: 100%;
+    height: auto
+}
+
+.location {
+    background: #f3e5dd
+}
+
+.venue-card {
+    max-width: 620px;
+    margin: 42px auto 0;
+    padding: 42px 25px;
+    background: #fffaf6;
+    border: 1px solid #d9b99a;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px #54251e0e
+}
+
+.venue-icon {
+    margin: auto;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #efdcd2;
+    color: #9e625d;
+    font-size: 31px
+}
+
+.venue-card h3 {
+    font: 600 34px "Cormorant Garamond";
+    margin: 18px 0 6px
+}
+
+.venue-card p {
+    line-height: 1.8
+}
+
+.venue-note {
+    color: #816e67;
+    max-width: 480px;
+    margin: 15px auto 25px
+}
+
+.map-btn {
+    display: inline-block;
+    background: var(--wine);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-size: 13px
+}
+
+.rsvp-section {
+    background: #fffaf5
+}
+
+.rsvp-section .section-inner {
+    position: relative;
+    z-index: 2
+}
+
+.rsvp-section form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+    max-width: 850px;
+    margin: 40px auto 15px
+}
+
+.rsvp-section input,
+.rsvp-section select {
+    border: 1px solid #d9b99a;
+    padding: 15px 16px;
+    background: #fffdf9;
+    color: #6b514b;
+    outline: none;
+    border-radius: 7px
+}
+
+.rsvp-section button {
+    grid-column: 1/-1;
+    border: 0;
+    background: var(--wine);
+    color: #fff;
+    padding: 15px;
+    border-radius: 7px
+}
+
+.form-note {
+    min-height: 25px;
+    color: #8a5b50
+}
+
+footer {
+    background: linear-gradient(#813a4e, #6c3043);
+    color: #fff2eb;
+    text-align: center;
+    padding: 18px 20px 60px
+}
+
+.footer-floral {
+    color: #e9c98b;
+    letter-spacing: 9px;
+    border-bottom: 1px solid #e9c98b55;
+    padding: 0 0 18px
+}
+
+footer h2 {
+    font: 500 42px "Cormorant Garamond"
+}
+
+footer h2 i {
+    font-style: normal;
+    color: #edcf91
+}
+
+footer p {
+    letter-spacing: 3px
+}
+
+footer small {
+    opacity: .8
+}
+
+@media(max-width:800px) {
+    .hero-inner {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 85px 8px 60px
+    }
+
+    .hero-photo {
+        height: min(510px, 112vw);
+        order: 1
+    }
+
+    .hero-copy {
+        order: 2;
+        padding: 0 8px
+    }
+
+    .photo-ring {
+        width: 76vw;
+        height: 76vw;
+        bottom: 8%
+    }
+
+    .hero h1 {
+        font-size: clamp(60px, 18vw, 95px)
+    }
+
+    .crest {
+        width: 82px;
+        height: 64px;
+        font-size: 26px
+    }
+
+    .eyebrow {
+        font-size: 9px;
+        letter-spacing: 2px
+    }
+
+    .invite-copy {
+        font-size: 15px
+    }
+
+    .hero-date {
+        margin-top: 15px
+    }
+
+    .floral {
+        font-size: 80px
+    }
+
+    .floral-left {
+        top: 85px
+    }
+
+    .floral-right {
+        bottom: 120px
+    }
+
+    .timer {
+        gap: 8px
+    }
+
+    .timer>div {
+        padding: 15px 4px
+    }
+
+    .timer b {
+        font-size: 37px
+    }
+
+    .timer small {
+        font-size: 9px
+    }
+
+    .event-grid,
+    .story-grid {
+        grid-template-columns: 1fr
+    }
+
+    .story-grid {
+        gap: 40px
+    }
+
+    .sketch-frame {
+        max-width: 550px;
+        margin: auto
+    }
+
+    .section {
+        padding: 75px 15px
+    }
+
+    .section h2 {
+        font-size: 50px
+    }
+
+    .rsvp-section form {
+        grid-template-columns: 1fr
+    }
+
+    .rsvp-section button {
+        grid-column: auto
+    }
+
+    .top-control {
+        top: 9px
+    }
+
+    .music-control {
+        left: 9px;
+        padding: 7px 11px
+    }
+
+    .rsvp-control {
+        right: 9px;
+        padding: 7px 11px
+    }
+
+    .paper-corner {
+        font-size: 50px
+    }
+}
+
+@media(max-width:420px) {
+    .envelope-scene {
+        width: 92vw
+    }
+
+    .envelope {
+        height: 400px
+    }
+
+    .invitation-card strong {
+        font-size: 28px
+    }
+
+    .hero-photo {
+        height: 112vw
+    }
+
+    .hero-date b {
+        font-size: 50px
+    }
+
+    .hero-date {
+        padding: 8px 15px
+    }
+
+    .timer {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .event-card {
+        grid-template-columns: 1fr;
+        text-align: center
+    }
+
+    .event-icon {
+        margin: auto
+    }
+
+    .event-card h3 {
+        font-size: 27px
+    }
+}
+
+
+/* =========================================================
+   MOBILE HERO - PREMIUM WEDDING INVITATION
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .hero {
+        min-height: 100svh;
+        width: 100%;
+        overflow: hidden;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0;
+        position: relative;
+    }
+
+    /* Soft mobile background */
+    .hero:before {
+        background:
+            radial-gradient(
+                circle at 50% 35%,
+                rgba(255,255,255,.95),
+                rgba(243,225,214,.55),
+                rgba(255,250,245,0)
+            );
+    }
+
+    /* Floral decorations */
+    .floral {
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .floral-left {
+        left: -35px;
+        top: 75px;
+        font-size: 75px;
+        opacity: .22;
+    }
+
+    .floral-right {
+        right: -35px;
+        bottom: 70px;
+        font-size: 75px;
+        opacity: .22;
+    }
+
+
+    /* Main mobile container */
+    .hero-inner {
+
+        width: 100%;
+        max-width: 480px;
+
+        min-height: 100svh;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        padding:
+            78px
+            18px
+            58px;
+
+        gap: 8px;
+
+        position: relative;
+        z-index: 2;
+    }
+
+
+    /* =====================================================
+       TEXT FIRST
+       ===================================================== */
+
+    .hero-copy {
+
+        order: 1;
+
+        width: 100%;
+
+        padding: 0;
+
+        text-align: center;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    /* Monogram */
+    .hero-copy .crest {
+
+        width: 74px;
+        height: 58px;
+
+        font-size: 25px;
+
+        margin-bottom: 13px;
+
+        border-color: var(--gold);
+
+        box-shadow:
+            0 5px 18px rgba(129,58,78,.08);
+    }
+
+
+    .hero-copy .crest i {
+        font-size: 15px;
+    }
+
+
+    /* Small heading */
+    .hero-copy .eyebrow {
+
+        margin: 0 0 8px;
+
+        font-size: 8px;
+
+        letter-spacing: 2.2px;
+
+        line-height: 1.5;
+    }
+
+
+    /* Couple names */
+    .hero-copy h1 {
+
+        margin: 0;
+
+        font-size: clamp(62px, 18vw, 88px);
+
+        line-height: .72;
+
+        letter-spacing: -1px;
+    }
+
+
+    .hero-copy h1 span {
+
+        font-size: .38em;
+
+        margin-left: 2px;
+
+        color: var(--gold);
+    }
+
+
+    /* Ornament */
+    .hero-copy .ornament {
+
+        margin: 18px 0 12px;
+
+        gap: 8px;
+    }
+
+
+    .hero-copy .ornament span {
+
+        width: 42px;
+
+        height: 1px;
+    }
+
+
+    /* Invitation text */
+    .hero-copy .invite-copy {
+
+        margin: 0;
+
+        font-size: 13px;
+
+        line-height: 1.5;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    /* Date */
+    .hero-copy .hero-date {
+
+        margin: 12px auto 0;
+
+        padding: 7px 18px;
+
+        gap: 11px;
+
+        width: auto;
+    }
+
+
+    .hero-copy .hero-date b {
+
+        font-size: 46px;
+
+        line-height: 1;
+    }
+
+
+    .hero-copy .hero-date span {
+
+        font-size: 12px;
+
+        line-height: 1.2;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    .hero-copy .hero-date small {
+
+        font-size: 8px;
+
+        letter-spacing: .8px;
+    }
+
+
+    /* =====================================================
+       COUPLE IMAGE
+       ===================================================== */
+
+    .hero-photo {
+
+        order: 2;
+
+        width: 100%;
+
+        height: min(430px, 88vw);
+
+        margin-top: 4px;
+
+        display: flex;
+
+        align-items: flex-end;
+
+        justify-content: center;
+
+        position: relative;
+    }
+
+
+    /* Circular soft background */
+    .photo-ring {
+
+        width: 72vw;
+        height: 72vw;
+
+        max-width: 330px;
+        max-height: 330px;
+
+        left: 50%;
+
+        bottom: 4%;
+
+        transform: translateX(-50%);
+
+        background:
+            radial-gradient(
+                circle,
+                rgba(234,210,199,.35),
+                rgba(234,210,199,.08)
+            );
+
+        border: 1px solid rgba(200,155,118,.35);
+
+        z-index: 0;
+    }
+
+
+    /* Couple */
+    .hero-photo img {
+
+        width: auto;
+
+        height: 100%;
+
+        max-width: 96%;
+
+        object-fit: contain;
+
+        object-position: center bottom;
+
+        position: relative;
+
+        z-index: 2;
+
+        filter:
+            drop-shadow(
+                0 18px 22px rgba(84,37,30,.16)
+            );
+    }
+
+
+    /* Ground shadow */
+    .hero-photo:after {
+
+        left: 18%;
+        right: 18%;
+
+        height: 8px;
+
+        bottom: 0;
+
+        opacity: .65;
+    }
+
+
+    /* Scroll button */
+    .scroll-down {
+
+        bottom: 12px;
+
+        width: 36px;
+        height: 36px;
+
+        font-size: 14px;
+
+        background: rgba(255,250,245,.65);
+
+        z-index: 5;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .hero-inner {
+
+        padding:
+            70px
+            13px
+            52px;
+    }
+
+
+    .hero-copy .crest {
+
+        width: 68px;
+        height: 54px;
+
+        font-size: 23px;
+
+        margin-bottom: 10px;
+    }
+
+
+    .hero-copy .eyebrow {
+
+        font-size: 7.5px;
+
+        letter-spacing: 1.8px;
+    }
+
+
+    .hero-copy h1 {
+
+        font-size: 20vw;
+
+        line-height: .70;
+    }
+
+
+    .hero-copy .ornament {
+
+        margin: 15px 0 10px;
+    }
+
+
+    .hero-copy .ornament span {
+
+        width: 34px;
+    }
+
+
+    .hero-copy .invite-copy {
+
+        font-size: 11.5px;
+
+        letter-spacing: 1.2px;
+    }
+
+
+    .hero-copy .hero-date {
+
+        margin-top: 10px;
+
+        padding: 6px 14px;
+    }
+
+
+    .hero-copy .hero-date b {
+
+        font-size: 40px;
+    }
+
+
+    .hero-copy .hero-date span {
+
+        font-size: 10px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .hero-copy .hero-date small {
+
+        font-size: 7px;
+    }
+
+
+    .hero-photo {
+
+        height: 92vw;
+
+        max-height: 390px;
+    }
+
+
+    .photo-ring {
+
+        width: 76vw;
+        height: 76vw;
+    }
+
+
+    .hero-photo img {
+
+        max-width: 100%;
+    }
+
+
+    .floral-left {
+
+        top: 60px;
+
+        left: -42px;
+
+        font-size: 65px;
+    }
+
+
+    .floral-right {
+
+        bottom: 55px;
+
+        right: -42px;
+
+        font-size: 65px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .hero-inner {
+
+        padding-top: 65px;
+    }
+
+
+    .hero-copy h1 {
+
+        font-size: 21vw;
+    }
+
+
+    .hero-photo {
+
+        height: 86vw;
+    }
+
+
+    .hero-copy .invite-copy {
+
+        font-size: 10.5px;
+    }
+
+
+    .hero-copy .hero-date b {
+
+        font-size: 36px;
+    }
+}
+
+/* =========================================
+   PREMIUM H & H MONOGRAM
+========================================= */
+
+.premium-monogram {
+    width: 150px;
+    height: auto;
+    margin: 0 auto 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    position: relative;
+}
+
+
+/* Small ornament on top */
+
+.monogram-top {
+    display: block;
+
+    font-family: "Cormorant Garamond", serif;
+    font-size: 18px;
+
+    line-height: 1;
+    margin-bottom: 8px;
+
+    opacity: .9;
+
+    animation: monogramFloat 3s ease-in-out infinite;
+}
+
+
+/* H & H */
+
+.monogram-letters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    position: relative;
+}
+
+
+/* Main initials */
+
+.monogram-letters span {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 44px;
+    font-weight: 500;
+
+    line-height: .9;
+
+    letter-spacing: 2px;
+
+    font-style: normal;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.35);
+}
+
+
+/* & symbol */
+
+.monogram-letters i {
+    font-family: "Allura", cursive;
+
+    font-size: 27px;
+
+    font-style: normal;
+
+    line-height: 1;
+
+    transform: translateY(3px);
+}
+
+
+/* Elegant line */
+
+.monogram-line {
+    width: 76px;
+    height: 1px;
+
+    margin-top: 13px;
+
+    position: relative;
+
+    opacity: .85;
+}
+
+
+/* Small diamond in center */
+
+.monogram-line::before {
+    content: "◆";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    font-size: 7px;
+}
+
+
+/* Decorative side lines */
+
+.monogram-line::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: 1px;
+
+    background: currentColor;
+
+    opacity: .55;
+}
+
+
+/* Subtle floating animation */
+
+@keyframes monogramFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .premium-monogram {
+        width: 120px;
+        margin-bottom: 18px;
+    }
+
+    .monogram-letters span {
+        font-size: 36px;
+    }
+
+    .monogram-letters i {
+        font-size: 23px;
+    }
+
+    .monogram-top {
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+
+    .monogram-line {
+        width: 62px;
+        margin-top: 10px;
+    }
+
+}
+
+/* =========================================
+   LOCATION SECTION
+========================================= */
+
+.location {
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Location Card */
+
+.location-card {
+    width: 100%;
+    max-width: 1180px;
+    margin: 45px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        280px
+        250px
+        1fr;
+
+    gap: 22px;
+
+    align-items: stretch;
+
+    padding: 0;
+}
+
+
+/* =========================================
+   VENUE IMAGE
+========================================= */
+
+.location-image {
+    height: 210px;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px rgba(90, 50, 35, 0.12);
+}
+
+
+.location-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.6s ease;
+}
+
+
+.location-image:hover img {
+    transform: scale(1.05);
+}
+
+
+
+/* =========================================
+   VENUE DETAILS
+========================================= */
+
+.location-details {
+
+    min-height: 210px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 15px 5px;
+}
+
+
+.location-details h3 {
+
+    margin: 0 0 10px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 27px;
+
+    font-weight: 600;
+
+    letter-spacing: .3px;
+}
+
+
+.location-date {
+
+    margin: 0 0 12px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 17px;
+
+    line-height: 1.55;
+}
+
+
+.location-address {
+
+    margin: 0 0 18px;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    opacity: .85;
+}
+
+
+
+/* =========================================
+   GOOGLE MAP BUTTON
+========================================= */
+
+.location-details .map-btn {
+
+    width: fit-content;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 11px 18px;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+
+.location-details .map-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(100, 45, 55, .18);
+}
+
+
+
+/* =========================================
+   GOOGLE MAP
+========================================= */
+
+.google-map {
+
+    height: 210px;
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px rgba(90, 50, 35, 0.12);
+
+    background: #eee;
+}
+
+
+.google-map iframe {
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+
+    display: block;
+}
+
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+    .location-card {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 20px;
+
+    }
+
+
+    .location-image {
+
+        height: 220px;
+    }
+
+
+    .location-details {
+
+        height: 220px;
+        min-height: 220px;
+
+    }
+
+
+    .google-map {
+
+        grid-column: 1 / -1;
+
+        height: 260px;
+
+    }
+
+}
+
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .location-card {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 18px;
+
+        margin-top: 30px;
+
+        padding:
+            0 4px;
+
+    }
+
+
+    /* Image */
+
+    .location-image {
+
+        width: 100%;
+
+        height: 190px;
+
+        border-radius: 14px;
+
+    }
+
+
+    /* Details */
+
+    .location-details {
+
+        width: 100%;
+
+        min-height: auto;
+
+        height: auto;
+
+        padding: 5px 8px 10px;
+
+        text-align: center;
+
+        align-items: center;
+
+    }
+
+
+    .location-details h3 {
+
+        font-size: 25px;
+
+        margin-bottom: 7px;
+
+    }
+
+
+    .location-date {
+
+        font-size: 16px;
+
+    }
+
+
+    .location-address {
+
+        font-size: 14px;
+
+        margin-bottom: 15px;
+
+    }
+
+
+    .location-details .map-btn {
+
+        padding: 11px 17px;
+
+        font-size: 13px;
+
+    }
+
+
+    /* Google Map */
+
+    .google-map {
+
+        width: 100%;
+
+        height: 230px;
+
+        border-radius: 13px;
+
+    }
+
+}
