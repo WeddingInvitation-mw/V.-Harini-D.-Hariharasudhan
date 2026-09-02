@@ -429,6 +429,29 @@ button {
     vertical-align: middle
 }
 
+.hero h1 span.long-name {
+    font: inherit;
+    color: var(--wine);
+    vertical-align: baseline;
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.hero h1 span.bride-name {
+    font: inherit;
+    color: var(--wine);
+    vertical-align: baseline;
+    display: inline-block;
+    line-height: 1;
+}
+
+.hero h1,
+.hero-copy {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
 .ornament {
     display: flex;
     justify-content: center;
@@ -1690,6 +1713,287 @@ footer small {
     align-items: stretch;
 
     padding: 0;
+}
+
+
+.location-card.single {
+
+    grid-template-columns: 1fr;
+
+    max-width: 640px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.location-card.single .location-details {
+
+    text-align: center;
+    align-items: center;
+
+    min-height: auto;
+
+    padding: 15px 5px 0;
+
+}
+
+.location-card.single .map-btn {
+
+    margin: 0 auto;
+
+}
+
+
+/* =========================================
+   VENUES GRID (new two-card layout)
+========================================= */
+
+.venues-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+
+    max-width: 1180px;
+
+    margin: 45px auto 0;
+
+    align-items: stretch;
+
+}
+
+
+.venue-card {
+
+    background: #fffdf9;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 25px rgba(90, 50, 35, .10);
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.venue-visual {
+
+    height: 230px;
+
+    overflow: hidden;
+
+    position: relative;
+
+}
+
+
+.venue-visual img {
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform .6s ease;
+
+}
+
+
+.venue-visual:hover img {
+
+    transform: scale(1.05);
+
+}
+
+
+.temple-visual {
+
+    background: radial-gradient(circle at 50% 42%, #fffaf5, #f3e1d6 85%);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.temple-motif {
+
+    width: 118px;
+    height: 130px;
+
+    filter: drop-shadow(0 4px 10px rgba(90, 50, 35, .12));
+
+}
+
+
+.venue-info {
+
+    padding: 26px 26px 30px;
+
+    text-align: center;
+
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.venue-tag {
+
+    margin: 0 0 10px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 10.5px;
+
+    font-weight: 600;
+
+    letter-spacing: 2.5px;
+
+    color: var(--gold);
+
+}
+
+
+.venue-info h3 {
+
+    margin: 0 0 10px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 23px;
+
+    font-weight: 600;
+
+    line-height: 1.28;
+
+    color: var(--wine);
+
+}
+
+
+.venue-info .map-btn {
+
+    margin-top: auto;
+
+    width: fit-content;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 11px 18px;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    transition: transform .25s ease, box-shadow .25s ease;
+
+}
+
+
+.venue-info .map-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 18px rgba(100, 45, 55, .18);
+
+}
+
+
+.reception-map-wrap {
+
+    max-width: 1180px;
+
+    margin: 45px auto 0;
+
+    text-align: center;
+
+}
+
+
+.google-map.wide {
+
+    height: 340px;
+
+    max-width: 1180px;
+
+    margin: 15px auto 0;
+
+}
+
+
+@media (max-width: 900px) {
+
+    .venues-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+
+    }
+
+
+    .google-map.wide {
+
+        height: 260px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .venue-visual {
+
+        height: 190px;
+
+    }
+
+
+    .venue-info {
+
+        padding: 20px 18px 24px;
+
+    }
+
+
+    .venue-info h3 {
+
+        font-size: 21px;
+
+    }
+
+
+    .google-map.wide {
+
+        height: 220px;
+
+    }
+
 }
 
 

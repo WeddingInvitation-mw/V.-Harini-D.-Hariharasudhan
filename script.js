@@ -1,3 +1,61 @@
+// ================================
+// AUTO-FIT LONG GROOM NAME
+// Shrinks "T. Hariharasudhan" only as
+// much as needed to fit on one line,
+// then applies that same size to
+// "V. Harini" so both names match.
+// ================================
+
+function fitLongName() {
+
+    const nameEl = document.querySelector('.hero h1 .long-name');
+    const brideEl = document.querySelector('.hero h1 .bride-name');
+
+    if (!nameEl) return;
+
+    const container = nameEl.closest('.hero-copy') || nameEl.closest('h1');
+
+    if (!container) return;
+
+    // Reset both names to natural (full) size before measuring
+    nameEl.style.fontSize = '';
+
+    if (brideEl) brideEl.style.fontSize = '';
+
+    const maxWidth = container.clientWidth * 0.97;
+
+    let fontSize = parseFloat(getComputedStyle(nameEl).fontSize);
+
+    const minSize = 16;
+
+    let guard = 300;
+
+    while (nameEl.scrollWidth > maxWidth && fontSize > minSize && guard > 0) {
+
+        fontSize -= 1;
+
+        nameEl.style.fontSize = fontSize + 'px';
+
+        guard--;
+
+    }
+
+    // Keep the bride's name the same size as the groom's
+    if (brideEl) brideEl.style.fontSize = fontSize + 'px';
+
+}
+
+window.addEventListener('load', fitLongName);
+
+window.addEventListener('resize', fitLongName);
+
+if (document.fonts && document.fonts.ready) {
+
+    document.fonts.ready.then(fitLongName);
+
+}
+
+
 const opening = document.getElementById('opening'),
     envelope = document.getElementById('envelope'),
     card = document.getElementById('card'),
@@ -144,7 +202,7 @@ window.addEventListener('scroll', () => {
 // COUNTDOWN
 // ================================
 
-const target = new Date('2026-09-07T10:30:00');
+const target = new Date('2026-09-07T06:30:00');
 
 const boxes = document.querySelectorAll('#timer>div b');
 
