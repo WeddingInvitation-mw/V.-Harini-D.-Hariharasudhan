@@ -722,43 +722,6 @@ button {
     background: #f3e5dd
 }
 
-.venue-card {
-    max-width: 620px;
-    margin: 42px auto 0;
-    padding: 42px 25px;
-    background: #fffaf6;
-    border: 1px solid #d9b99a;
-    border-radius: 18px;
-    box-shadow: 0 18px 40px #54251e0e
-}
-
-.venue-icon {
-    margin: auto;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background: #efdcd2;
-    color: #9e625d;
-    font-size: 31px
-}
-
-.venue-card h3 {
-    font: 600 34px "Cormorant Garamond";
-    margin: 18px 0 6px
-}
-
-.venue-card p {
-    line-height: 1.8
-}
-
-.venue-note {
-    color: #816e67;
-    max-width: 480px;
-    margin: 15px auto 25px
-}
-
 .map-btn {
     display: inline-block;
     background: var(--wine);
@@ -1767,6 +1730,14 @@ footer small {
 
 
 .venue-card {
+
+    max-width: none;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: 0;
 
     background: #fffdf9;
 

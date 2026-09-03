@@ -291,6 +291,8 @@ music.addEventListener('click', async () => {
 // RSVP FORM
 // ================================
 
+const WHATSAPP_NUMBER = '919940573887';
+
 document
     .getElementById('rsvpForm')
     .addEventListener('submit', e => {
@@ -305,6 +307,20 @@ document
                 .trim();
 
 
+        const em =
+            document
+                .getElementById('email')
+                .value
+                .trim();
+
+
+        const g =
+            document
+                .getElementById('guests')
+                .value
+                .trim();
+
+
         const s =
             document
                 .getElementById('attendance')
@@ -315,6 +331,30 @@ document
             .getElementById('formNote')
             .textContent =
             `Thank you, ${n}. Your RSVP — ${s} — has been noted.`;
+
+
+        // Build WhatsApp message with the RSVP details
+        let waMessage =
+            `💌 *Wedding Confirmation Received!*\n\n` +
+            `👰🤵 *T. Hariharasudhan & V. Harini*\n` +
+            `📅 07 September 2026, Monday\n\n` +
+            `🙋 *Guest Name:* ${n}\n` +
+            `✅ *Attendance:* ${s}`;
+
+        if (g) {
+            waMessage += `\n👥 *Guests:* ${g}`;
+        }
+
+        if (em) {
+            waMessage += `\n📧 *Email:* ${em}`;
+        }
+
+        waMessage += `\n\n🎉 Thank you for confirming!`;
+
+        const waUrl =
+            `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
+
+        window.open(waUrl, '_blank');
 
 
         e.target.reset();
